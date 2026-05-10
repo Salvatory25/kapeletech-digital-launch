@@ -2,20 +2,22 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLang, LanguageToggle } from "@/lib/i18n";
 
 const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/training", label: "Training" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/blog", label: "Blog" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", key: "nav.home" },
+  { to: "/about", key: "nav.about" },
+  { to: "/services", key: "nav.services" },
+  { to: "/training", key: "nav.training" },
+  { to: "/portfolio", key: "nav.portfolio" },
+  { to: "/blog", key: "nav.blog" },
+  { to: "/contact", key: "nav.contact" },
 ] as const;
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useLang();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -54,27 +56,31 @@ export function Header() {
                 className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition rounded-lg hover:bg-white/5"
                 activeProps={{ className: "px-3 py-2 text-sm text-foreground rounded-lg bg-white/5" }}
               >
-                {n.label}
+                {t(n.key)}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden lg:flex">
+          <div className="hidden lg:flex items-center gap-2">
+            <LanguageToggle />
             <Link
               to="/contact"
               className="inline-flex items-center rounded-xl bg-gradient-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-glow hover:opacity-90 transition"
             >
-              Get Started
+              {t("cta.getStarted")}
             </Link>
           </div>
 
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl glass"
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageToggle />
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl glass"
+              aria-label="Toggle menu"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {open && (
@@ -88,7 +94,7 @@ export function Header() {
                   className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground rounded-lg hover:bg-white/5"
                   activeProps={{ className: "px-4 py-3 text-sm text-foreground rounded-lg bg-white/5" }}
                 >
-                  {n.label}
+                  {t(n.key)}
                 </Link>
               ))}
               <Link
@@ -96,7 +102,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
                 className="mt-2 text-center rounded-xl bg-gradient-primary px-4 py-3 text-sm font-medium text-primary-foreground"
               >
-                Get Started
+                {t("cta.getStarted")}
               </Link>
             </div>
           </div>
