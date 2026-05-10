@@ -30,6 +30,7 @@ const TESTIMONIALS = [
 ];
 
 function HomePage() {
+  const { t } = useLang();
   return (
     <>
       {/* HERO */}
