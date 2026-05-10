@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, ShieldCheck, Rocket, Star, Quote } from "lucide-r
 import heroGlow from "@/assets/hero-glow.jpg";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { SERVICES } from "@/data/site";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
