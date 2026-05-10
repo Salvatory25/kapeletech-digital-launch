@@ -13,6 +13,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Toaster } from "@/components/ui/sonner";
+import { LanguageProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -117,15 +118,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 pt-24">
-          <Outlet />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <Toaster theme="dark" position="top-right" richColors />
-      </div>
+      <LanguageProvider>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-1 pt-24">
+            <Outlet />
+          </main>
+          <Footer />
+          <WhatsAppButton />
+          <Toaster theme="dark" position="top-right" richColors />
+        </div>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, ShieldCheck, Rocket, Star, Quote } from "lucide-r
 import heroGlow from "@/assets/hero-glow.jpg";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { SERVICES } from "@/data/site";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,6 +30,7 @@ const TESTIMONIALS = [
 ];
 
 function HomePage() {
+  const { t } = useLang();
   return (
     <>
       {/* HERO */}
@@ -49,21 +51,21 @@ function HomePage() {
           >
             <span className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs font-medium">
               <Sparkles className="h-3.5 w-3.5 text-accent" />
-              Innovating Digital Solutions for the Future
+              {t("hero.badge")}
             </span>
             <h1 className="mt-6 font-display text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05]">
-              Transforming Ideas Into <span className="text-gradient">Powerful Digital Solutions</span>
+              {t("hero.title1")}<span className="text-gradient">{t("hero.title2")}</span>
             </h1>
             <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl">
-              KapeleTech Web Services builds modern websites, mobile apps, software, and ICT training experiences that move businesses forward — from Arusha to the world.
+              {t("hero.desc")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/contact" className="group inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow hover:opacity-90 transition">
-                Get Started
+                {t("cta.getStarted")}
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </Link>
               <Link to="/services" className="inline-flex items-center gap-2 rounded-xl glass-strong px-6 py-3 text-sm font-semibold hover:bg-white/10 transition">
-                Explore Services
+                {t("cta.exploreServices")}
               </Link>
             </div>
           </motion.div>
